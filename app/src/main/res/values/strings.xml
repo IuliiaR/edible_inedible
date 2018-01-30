@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Edible or Inedible</string>
+    <string name="will_you_get_out_of_the_forest_alive">Will you get out of the forest alive?</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="let_s_go">Let\'s go</string>
+    <string name="inedible">Inedible</string>
+    <string name="edible">Edible</string>
+    <string name="backgroung_image">Backgroung image</string>
+    <string name="go_deeper_into_the_forest">Go deeper into the forest</string>
+    <string name="get_out_of_the_forest">Get out of the forest</string>
+
+    <!-- Questions/Answers -->
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="would_you_like_to_eat_me">Would you like to eat this berry?</string>
+
+    <!-- Berries names -->
+    <string name="cloudberry">cloudberry</string>
+    <string name="blackberry">blackberry</string>
+    <string name="wolfberry">wolfberry</string>
+    <string name="crowberry">crowberry</string>
+    <string name="lily_of_the_valley">lily of the valley</string>
+    <string name="belladonna">belladonna</string>
+    <string name="crow_eye">crow eye</string>
+    <string name="correct_answers_summary">\nYou have %d correct answers</string>
+    <string name="wrong_answers_summary">\nYou have experienced vomiting, diarrhea, and perhaps even died %d times</string>
+    <string name="which_of_these_berries_would_you_eat">Which of these berries would you eat?</string>
+    <string name="what_is_the_name_of_this_berry">What is the name of this berry?</string>
+    <string name="enter_your_answer">Enter your answer</string>
+    <string name="try_again">Try again</string>
+    <string name="image_for_question">Image for question</string>
+</resources>

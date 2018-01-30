@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/layout_radio_group_question"
+            android:id="@+id/question_1"/>
+        <include
+            layout="@layout/layout_radio_group_question"
+            android:id="@+id/question_2"/>
+
+        <!--Question3-->
+        <include
+            layout="@layout/layout_checkbox_question"
+            android:id="@+id/question_3"/>
+
+        <!--Question4-->
+        <include
+            layout="@layout/layout_edit_text_question"
+            android:id="@+id/question_4"/>
+
+        <Button
+            android:id="@+id/button_submit"
+            style="@style/button_style"
+            android:onClick="checkAnswers"
+            android:text="@string/get_out_of_the_forest" />
+
+        <Button
+            android:id="@+id/button_restart"
+            style="@style/button_style"
+            android:visibility="gone"
+            android:onClick="resetQuiz"
+            android:text="@string/try_again" />
+    </LinearLayout>
+
+</ScrollView>

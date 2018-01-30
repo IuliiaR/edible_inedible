@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/question_text_style"
+        android:text="@string/would_you_like_to_eat_me" />
+
+    <ImageView
+        android:id="@+id/image_radio_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_yes"
+            style="@style/radio_button_style"
+            android:text="@string/Yes" />
+
+        <RadioButton
+            android:id="@+id/radio_no"
+            style="@style/radio_button_style"
+            android:text="@string/No" />
+    </RadioGroup>
+</LinearLayout>
+
