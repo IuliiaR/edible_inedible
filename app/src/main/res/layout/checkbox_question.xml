@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.android.edibleorinedible.CheckboxQuestion xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/question"
+        style="@style/question_text_style"
+        android:text="@string/which_of_these_berries_would_you_eat" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:columnCount="2">
+
+        <include
+            android:id="@+id/answer_1"
+            style="@style/checkbox_image_style"
+            layout="@layout/checkbox_image_view" />
+
+        <include
+            android:id="@+id/answer_2"
+            style="@style/checkbox_image_style"
+            layout="@layout/checkbox_image_view" />
+
+        <include
+            android:id="@+id/answer_3"
+            style="@style/checkbox_image_style"
+            layout="@layout/checkbox_image_view" />
+
+        <include
+            android:id="@+id/answer_4"
+            style="@style/checkbox_image_style"
+            layout="@layout/checkbox_image_view" />
+    </GridLayout>
+</com.example.android.edibleorinedible.CheckboxQuestion>

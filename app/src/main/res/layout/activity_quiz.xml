@@ -9,21 +9,20 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/layout_radio_group_question"
-            android:id="@+id/question_1"/>
-        <include
-            layout="@layout/layout_radio_group_question"
-            android:id="@+id/question_2"/>
+            android:id="@+id/question_1"
+            layout="@layout/radio_group_question" />
 
-        <!--Question3-->
         <include
-            layout="@layout/layout_checkbox_question"
-            android:id="@+id/question_3"/>
+            android:id="@+id/question_2"
+            layout="@layout/radio_group_question" />
 
-        <!--Question4-->
         <include
-            layout="@layout/layout_edit_text_question"
-            android:id="@+id/question_4"/>
+            android:id="@+id/question_3"
+            layout="@layout/checkbox_question" />
+
+        <include
+            android:id="@+id/question_4"
+            layout="@layout/edit_text_question" />
 
         <Button
             android:id="@+id/button_submit"
@@ -34,9 +33,9 @@
         <Button
             android:id="@+id/button_restart"
             style="@style/button_style"
-            android:visibility="gone"
             android:onClick="resetQuiz"
-            android:text="@string/try_again" />
+            android:text="@string/try_again"
+            android:visibility="gone" />
     </LinearLayout>
 
 </ScrollView>
