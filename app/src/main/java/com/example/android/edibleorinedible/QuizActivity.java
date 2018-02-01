@@ -82,6 +82,8 @@ public class QuizActivity extends AppCompatActivity {
                 correctScore++;
             if (question.IsChecked(i) && !berryObjects.get(i + 2).isEdible())
                 wrongScore++;
+            if (!question.IsChecked(i) && !berryObjects.get(i + 2).isEdible())
+                correctScore++;
         }
     }
 
@@ -102,7 +104,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private String createSummaryMessage() {
         String resultMessage = String.format("%s,", playerName);
-        resultMessage += String.format(getString(R.string.correct_answers_summary), correctScore, 3);
+        resultMessage += String.format(getString(R.string.correct_answers_summary), correctScore, 7);
         if (wrongScore != 0) {
             resultMessage += String.format(getString(R.string.wrong_answers_summary), wrongScore);
         }
@@ -119,7 +121,7 @@ public class QuizActivity extends AppCompatActivity {
         berryObjects.add(new BerryObject(R.string.lily_of_the_valley, R.drawable.lily_of_the_valley, false));
         berryObjects.add(new BerryObject(R.string.belladonna, R.drawable.belladonna, false));
         berryObjects.add(new BerryObject(R.string.blackberry, R.drawable.blackberry, true));
-        berryObjects.add(new BerryObject(R.string.crow_eye, R.drawable.croweye, false));
+        berryObjects.add(new BerryObject(R.string.paris_herb, R.drawable.paris_herb, false));
         berryObjects.add(new BerryObject(R.string.crowberry, R.drawable.crowberry, true));
         berryObjects.add(new BerryObject(R.string.cloudberry, R.drawable.cloudberry, true));
         Collections.shuffle(berryObjects);
