@@ -7,21 +7,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
-public class EditTextQuestion extends LinearLayout {
+public class EditTextQuestionView extends LinearLayout {
     TextView question;
     ImageView image;
     EditText answer;
 
-    public EditTextQuestion(Context context) {
+    BerryObject berry;
+
+    public EditTextQuestionView(Context context) {
         super(context);
     }
 
-    public EditTextQuestion(Context context, AttributeSet attrs) {
+    public EditTextQuestionView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public EditTextQuestion(Context context, AttributeSet attrs, int defStyle) {
+    public EditTextQuestionView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -33,7 +34,12 @@ public class EditTextQuestion extends LinearLayout {
         this.answer = findViewById(R.id.answer);
     }
 
-    public void SetImage(int imageId) {
+    public void initData(BerryObject berry) {
+        this.berry = berry;
+        this.SetImage(berry.getImageId());
+    }
+
+    private void SetImage(int imageId) {
         this.image.setImageResource(imageId);
     }
 
@@ -41,7 +47,18 @@ public class EditTextQuestion extends LinearLayout {
         return !this.GetAnswer().isEmpty();
     }
 
-    public String GetAnswer() {
+    public int getResult(Context context) {
+        String name = GetCorrectAnswer(context);
+        if (this.GetAnswer().equalsIgnoreCase(name))
+            return 1;
+        return 0;
+    }
+
+    private String GetAnswer() {
         return answer.getText().toString().toLowerCase();
+    }
+
+    public String GetCorrectAnswer(Context context) {
+        return context.getResources().getString(this.berry.getNameId());
     }
 }

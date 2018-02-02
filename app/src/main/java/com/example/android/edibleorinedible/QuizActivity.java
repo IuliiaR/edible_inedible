@@ -11,16 +11,17 @@ import java.util.Collections;
 
 public class QuizActivity extends AppCompatActivity {
     public static final String PLAYER_NAME = "player name";
+
     ArrayList<BerryObject> berryObjects = new ArrayList<>();
     String playerName;
     int correctScore;
-    int wrongScore;
+    int inedibleScore;
     String textAnswer;
 
-    RadioGroupQuestion q1;
-    RadioGroupQuestion q2;
-    CheckboxQuestion q3;
-    EditTextQuestion q4;
+    RadioGroupQuestionView q1;
+    RadioGroupQuestionView q2;
+    CheckboxQuestionView q3;
+    EditTextQuestionView q4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         correctScore = 0;
-        wrongScore = 0;
+        inedibleScore = 0;
         textAnswer = "";
         playerName = getIntent().getStringExtra(PLAYER_NAME);
 
@@ -39,19 +40,19 @@ public class QuizActivity extends AppCompatActivity {
         q3 = findViewById(R.id.question_3);
         q4 = findViewById(R.id.question_4);
 
-        q1.SetImage(berryObjects.get(0).getImageId());
-        q2.SetImage(berryObjects.get(1).getImageId());
-        q3.SetImage(new int[]{berryObjects.get(2).getImageId(),
-                berryObjects.get(3).getImageId(),
-                berryObjects.get(4).getImageId(),
-                berryObjects.get(5).getImageId()});
-        q4.SetImage(berryObjects.get(6).getImageId());
+        q1.initData(berryObjects.get(0));
+        q2.initData(berryObjects.get(1));
+        q3.initData(new BerryObject[]{berryObjects.get(2),
+                berryObjects.get(3),
+                berryObjects.get(4),
+                berryObjects.get(5)});
+        q4.initData(berryObjects.get(6));
     }
 
     public void checkAnswers(View view) {
         if (isAllAnswered()) {
-            this.checkRadioButtonQuestion(q1, 0);
-            this.checkRadioButtonQuestion(q2, 1);
+            this.checkRadioButtonQuestion(q1);
+            this.checkRadioButtonQuestion(q2);
             this.checkCheckboxQuestion(q3);
             this.checkEditTextQuestion(q4);
 
@@ -67,32 +68,25 @@ public class QuizActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void checkRadioButtonQuestion(RadioGroupQuestion question, int index) {
-        if (((question.GetAnswer() == R.id.yes)
-                && berryObjects.get(0).isEdible())
-                || ((question.GetAnswer() == R.id.no)
-                && !berryObjects.get(0).isEdible())) {
+    private void checkRadioButtonQuestion(RadioGroupQuestionView question) {
+        if (question.getResult() != 0) {
             correctScore++;
-        } else wrongScore++;
+        } else inedibleScore++;
     }
 
-    private void checkCheckboxQuestion(CheckboxQuestion question) {
+    private void checkCheckboxQuestion(CheckboxQuestionView question) {
         for (int i = 0; i < 4; i++) {
-            if (question.IsChecked(i) && berryObjects.get(i + 2).isEdible())
+            if (question.getResult(i) != 0)
                 correctScore++;
-            if (question.IsChecked(i) && !berryObjects.get(i + 2).isEdible())
-                wrongScore++;
-            if (!question.IsChecked(i) && !berryObjects.get(i + 2).isEdible())
-                correctScore++;
+            else inedibleScore++;
         }
     }
 
-    private void checkEditTextQuestion(EditTextQuestion question) {
-        String berryName = getString(berryObjects.get(6).getNameId());
-        if (question.GetAnswer().equalsIgnoreCase(berryName)) {
+    private void checkEditTextQuestion(EditTextQuestionView question) {
+        if (question.getResult(this) != 0) {
             correctScore++;
         } else {
-            textAnswer = String.format(getString(R.string.text_question_notification), berryName);
+            textAnswer = String.format(getString(R.string.text_question_notification), question.GetCorrectAnswer(this));
         }
     }
 
@@ -105,8 +99,8 @@ public class QuizActivity extends AppCompatActivity {
     private String createSummaryMessage() {
         String resultMessage = String.format("%s,", playerName);
         resultMessage += String.format(getString(R.string.correct_answers_summary), correctScore, 7);
-        if (wrongScore != 0) {
-            resultMessage += String.format(getString(R.string.wrong_answers_summary), wrongScore);
+        if (inedibleScore != 0) {
+            resultMessage += String.format(getString(R.string.wrong_answers_summary), inedibleScore);
         }
         resultMessage += String.format("\n%s", textAnswer);
         return resultMessage;
