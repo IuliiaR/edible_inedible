@@ -5,21 +5,21 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class CheckboxQuestionView extends LinearLayout {
+public class CheckboxQuestion extends LinearLayout {
     TextView question;
     CheckboxImageView[] answers;
 
     BerryObject[] berries;
 
-    public CheckboxQuestionView(Context context) {
+    public CheckboxQuestion(Context context) {
         super(context);
     }
 
-    public CheckboxQuestionView(Context context, AttributeSet attrs) {
+    public CheckboxQuestion(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CheckboxQuestionView(Context context, AttributeSet attrs, int defStyle) {
+    public CheckboxQuestion(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

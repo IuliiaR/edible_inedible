@@ -18,10 +18,10 @@ public class QuizActivity extends AppCompatActivity {
     int inedibleScore;
     String textAnswer;
 
-    RadioGroupQuestionView q1;
-    RadioGroupQuestionView q2;
-    CheckboxQuestionView q3;
-    EditTextQuestionView q4;
+    RadioGroupQuestion q1;
+    RadioGroupQuestion q2;
+    CheckboxQuestion q3;
+    EditTextQuestion q4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +68,13 @@ public class QuizActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void checkRadioButtonQuestion(RadioGroupQuestionView question) {
+    private void checkRadioButtonQuestion(RadioGroupQuestion question) {
         if (question.getResult() != 0) {
             correctScore++;
         } else inedibleScore++;
     }
 
-    private void checkCheckboxQuestion(CheckboxQuestionView question) {
+    private void checkCheckboxQuestion(CheckboxQuestion question) {
         for (int i = 0; i < 4; i++) {
             if (question.getResult(i) != 0)
                 correctScore++;
@@ -82,7 +82,7 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private void checkEditTextQuestion(EditTextQuestionView question) {
+    private void checkEditTextQuestion(EditTextQuestion question) {
         if (question.getResult(this) != 0) {
             correctScore++;
         } else {
