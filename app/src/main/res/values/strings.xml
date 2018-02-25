@@ -31,6 +31,6 @@
     <!-- Notifications-->
     <string name="answer_all_questions_notification">Please, answer all questions</string>
     <string name="text_question_notification">The last berry is called %s</string>
-    <string name="correct_answers_summary">\nYour score is %d of 7</string>
+    <string name="correct_answers_summary">\nYour score is %d of %d</string>
     <string name="wrong_answers_summary">\nYou have experienced vomiting, diarrhea, and perhaps even died %d times</string>
 </resources>

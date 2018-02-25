@@ -1,7 +1,11 @@
 package com.example.android.edibleorinedible;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.SparseArray;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -9,11 +13,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class RadioGroupQuestion extends LinearLayout {
+    private static final String STATE_ANSWER = "stateAnswer";
     TextView question;
     ImageView image;
     RadioGroup answersgroup;
     RadioButton[] answers;
-
     BerryObject berry;
 
     public RadioGroupQuestion(Context context) {
@@ -36,6 +40,34 @@ public class RadioGroupQuestion extends LinearLayout {
         this.answersgroup = findViewById(R.id.answers_block);
         this.answers = new RadioButton[]{this.answersgroup.findViewById(R.id.yes),
                 this.answersgroup.findViewById(R.id.no)};
+    }
+
+    @Nullable
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("superState", super.onSaveInstanceState());
+        bundle.putInt(STATE_ANSWER, answersgroup.getCheckedRadioButtonId());
+        return bundle;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        Bundle bundle = (Bundle) state;
+        int answerState = bundle.getInt(STATE_ANSWER);
+        answersgroup.check(answerState);
+        state = bundle.getParcelable("superState");
+        super.onRestoreInstanceState(state);
+    }
+
+    @Override
+    protected void dispatchSaveInstanceState(SparseArray container) {
+        super.dispatchFreezeSelfOnly(container);
+    }
+
+    @Override
+    protected void dispatchRestoreInstanceState(SparseArray container) {
+        super.dispatchThawSelfOnly(container);
     }
 
     public void initData(BerryObject berry) {
