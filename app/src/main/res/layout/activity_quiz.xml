@@ -27,7 +27,7 @@
         <Button
             android:id="@+id/button_submit"
             style="@style/button_style"
-            android:onClick="checkAnswers"
+            android:onClick="verifyAnswers"
             android:text="@string/get_out_of_the_forest" />
 
         <Button

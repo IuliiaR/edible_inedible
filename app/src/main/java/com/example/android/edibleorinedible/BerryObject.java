@@ -1,25 +1,25 @@
 package com.example.android.edibleorinedible;
 
 class BerryObject {
-    private int nameId;
-    private int imageId;
-    private boolean isEdible;
+    private int mNameId;
+    private int mImageId;
+    private boolean mIsEdible;
 
     BerryObject(int nameId, int imageId, boolean isEdible) {
-        this.nameId = nameId;
-        this.imageId = imageId;
-        this.isEdible = isEdible;
+        this.mNameId = nameId;
+        this.mImageId = imageId;
+        this.mIsEdible = isEdible;
     }
 
     boolean isEdible() {
-        return isEdible;
+        return mIsEdible;
     }
 
     int getImageId() {
-        return imageId;
+        return mImageId;
     }
 
     int getNameId() {
-        return nameId;
+        return mNameId;
     }
 }

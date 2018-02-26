@@ -49,12 +49,12 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     // Check user answers
-    public void checkAnswers(View view) {
+    public void verifyAnswers(View view) {
         if (isAllAnswered()) {
-            this.checkRadioButtonQuestion(question_1);
-            this.checkRadioButtonQuestion(question_2);
-            this.checkCheckboxQuestion(question_3);
-            this.checkEditTextQuestion(question_4);
+            this.verifyRadioButtonQuestion(question_1);
+            this.verifyRadioButtonQuestion(question_2);
+            this.verifyCheckboxQuestion(question_3);
+            this.verifyEditTextQuestion(question_4);
 
             this.displayResults();
         } else {
@@ -70,23 +70,27 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     // Check answer of radio button question
-    private void checkRadioButtonQuestion(RadioGroupQuestion question) {
-        if (question.getResult() != 0) {
+    private void verifyRadioButtonQuestion(RadioGroupQuestion question) {
+        int result = question.getResult();
+        if (result == 1)
             correctScore++;
-        } else inedibleScore++;
+        else if (result == -1)
+            inedibleScore++;
     }
 
     // Check answer of checkbox question
-    private void checkCheckboxQuestion(CheckboxQuestion question) {
+    private void verifyCheckboxQuestion(CheckboxQuestion question) {
         for (int i = 0; i < 4; i++) {
-            if (question.getResult(i) != 0)
+            int result = question.getResult(i);
+            if (result == 1)
                 correctScore++;
-            else inedibleScore++;
+            else if (result == -1)
+                inedibleScore++;
         }
     }
 
     // Check answer of edit text question
-    private void checkEditTextQuestion(EditTextQuestion question) {
+    private void verifyEditTextQuestion(EditTextQuestion question) {
         if (question.getResult(this) != 0) {
             correctScore++;
         } else {

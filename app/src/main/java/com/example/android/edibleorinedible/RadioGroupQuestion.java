@@ -10,15 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 public class RadioGroupQuestion extends LinearLayout {
     private static final String STATE_ANSWER = "stateAnswer";
-    TextView question;
-    ImageView image;
-    RadioGroup answersgroup;
-    RadioButton[] answers;
-    BerryObject berry;
+    private ImageView mImage;
+    private RadioGroup mAnswersgroup;
+    private RadioButton[] mAnswers;
+    private BerryObject mBerry;
 
     public RadioGroupQuestion(Context context) {
         super(context);
@@ -35,11 +33,10 @@ public class RadioGroupQuestion extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        this.question = findViewById(R.id.question);
-        this.image = findViewById(R.id.image);
-        this.answersgroup = findViewById(R.id.answers_block);
-        this.answers = new RadioButton[]{this.answersgroup.findViewById(R.id.yes),
-                this.answersgroup.findViewById(R.id.no)};
+        this.mImage = findViewById(R.id.image);
+        this.mAnswersgroup = findViewById(R.id.answers_block);
+        this.mAnswers = new RadioButton[]{this.mAnswersgroup.findViewById(R.id.yes),
+                this.mAnswersgroup.findViewById(R.id.no)};
     }
 
     @Nullable
@@ -47,7 +44,7 @@ public class RadioGroupQuestion extends LinearLayout {
     protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable("superState", super.onSaveInstanceState());
-        bundle.putInt(STATE_ANSWER, answersgroup.getCheckedRadioButtonId());
+        bundle.putInt(STATE_ANSWER, mAnswersgroup.getCheckedRadioButtonId());
         return bundle;
     }
 
@@ -55,7 +52,7 @@ public class RadioGroupQuestion extends LinearLayout {
     protected void onRestoreInstanceState(Parcelable state) {
         Bundle bundle = (Bundle) state;
         int answerState = bundle.getInt(STATE_ANSWER);
-        answersgroup.check(answerState);
+        mAnswersgroup.check(answerState);
         state = bundle.getParcelable("superState");
         super.onRestoreInstanceState(state);
     }
@@ -71,21 +68,28 @@ public class RadioGroupQuestion extends LinearLayout {
     }
 
     public void initData(BerryObject berry) {
-        this.berry = berry;
+        this.mBerry = berry;
         this.SetImage(berry.getImageId());
     }
 
     private void SetImage(int imageId) {
-        this.image.setImageResource(imageId);
+        this.mImage.setImageResource(imageId);
     }
 
     public boolean isAnswered() {
-        return this.answersgroup.getCheckedRadioButtonId() != -1;
+        return this.mAnswersgroup.getCheckedRadioButtonId() != -1;
     }
 
     public int getResult() {
-        if (answers[0].isChecked() && berry.isEdible() || answers[1].isChecked() && !berry.isEdible())
+        // If user gave correct answer return 1
+        if (mAnswers[0].isChecked() && mBerry.isEdible() || mAnswers[1].isChecked() && !mBerry.isEdible())
             return 1;
+
+            // If user checked inedible berry return -1
+        else if (mAnswers[0].isChecked() && !mBerry.isEdible())
+            return -1;
+
+        // If user didn't check edible berry return 0
         return 0;
     }
 }

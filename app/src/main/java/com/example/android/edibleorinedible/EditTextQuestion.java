@@ -9,15 +9,12 @@ import android.util.SparseArray;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class EditTextQuestion extends LinearLayout {
     private static final String STATE_ANSWER = "stateAnswer";
-    TextView question;
-    ImageView image;
-    EditText answer;
-    BerryObject berry;
-    private String selectedAnswer;
+    private ImageView mImage;
+    private EditText mAnswer;
+    private BerryObject mBerry;
 
     public EditTextQuestion(Context context) {
         super(context);
@@ -34,9 +31,8 @@ public class EditTextQuestion extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        this.question = findViewById(R.id.question);
-        this.image = findViewById(R.id.image);
-        this.answer = findViewById(R.id.answer);
+        this.mImage = findViewById(R.id.image);
+        this.mAnswer = findViewById(R.id.answer);
     }
 
     @Nullable
@@ -44,7 +40,7 @@ public class EditTextQuestion extends LinearLayout {
     protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable("superState", super.onSaveInstanceState());
-        bundle.putString(STATE_ANSWER, answer.getText().toString());
+        bundle.putString(STATE_ANSWER, mAnswer.getText().toString());
         return bundle;
     }
 
@@ -52,7 +48,7 @@ public class EditTextQuestion extends LinearLayout {
     protected void onRestoreInstanceState(Parcelable state) {
         Bundle bundle = (Bundle) state;
         String answerState = bundle.getString(STATE_ANSWER);
-        answer.setText(answerState);
+        mAnswer.setText(answerState);
 
         state = bundle.getParcelable("superState");
         super.onRestoreInstanceState(state);
@@ -69,12 +65,12 @@ public class EditTextQuestion extends LinearLayout {
     }
 
     public void initData(BerryObject berry) {
-        this.berry = berry;
+        this.mBerry = berry;
         this.SetImage(berry.getImageId());
     }
 
     private void SetImage(int imageId) {
-        this.image.setImageResource(imageId);
+        this.mImage.setImageResource(imageId);
     }
 
     public boolean isAnswered() {
@@ -89,10 +85,10 @@ public class EditTextQuestion extends LinearLayout {
     }
 
     private String GetAnswer() {
-        return answer.getText().toString().toLowerCase();
+        return mAnswer.getText().toString().toLowerCase();
     }
 
     public String GetCorrectAnswer(Context context) {
-        return context.getResources().getString(this.berry.getNameId());
+        return context.getResources().getString(this.mBerry.getNameId());
     }
 }

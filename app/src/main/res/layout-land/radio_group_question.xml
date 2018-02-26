@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.android.edibleorinedible.RadioGroupQuestion xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/question"
+        style="@style/question_text_style"
+        android:text="@string/would_you_like_to_eat_me" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image_for_question"
+            tools:src="@drawable/cloudberry" />
+
+        <RadioGroup
+            android:id="@+id/answers_block"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/yes"
+                style="@style/radio_button_style_vertical"
+                android:text="@string/Yes" />
+
+            <RadioButton
+                android:id="@+id/no"
+                style="@style/radio_button_style_vertical"
+                android:text="@string/No" />
+        </RadioGroup>
+    </LinearLayout>
+</com.example.android.edibleorinedible.RadioGroupQuestion>
